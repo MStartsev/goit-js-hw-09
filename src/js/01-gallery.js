@@ -10,7 +10,7 @@ const galleryEl = document.querySelector(`.${galleryName}`);
 const createGallery = ({ gallery, galleryName }) =>
   (gallery.innerHTML = galleryItems.reduce(
     (arr, { preview, original, description }) =>
-      `${arr}\n
+      `${arr}
         <a class='${galleryName}__item ${galleryName}__link' href='${original}'>
             <img class='${galleryName}__image' src='${preview}' alt='${description}' width='320px'>
         </a>
