@@ -11,5 +11,5 @@ player.setCurrentTime(currentTime);
 player.on('timeupdate', throttle(onPlay, throttleTime));
 
 function onPlay(time) {
-  localStorage.setItem(currentTimeKey, time.seconds);
+  localStorage.setItem(currentTimeKey, JSON.stringify(time.seconds));
 }
