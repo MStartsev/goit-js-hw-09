@@ -1,17 +1,20 @@
 import Player from '@vimeo/player';
-console.dir(Player);
+import throttle from 'lodash.throttle';
 
 const player = new Player('vimeo-player');
+const currentTimeKey = 'videoplayer-current-time';
+const currentTime = JSON.parse(localStorage.getItem(currentTimeKey)) || 0;
+const throttleTime = 1000;
 
-player.on('play', function () {
-  console.log('played the handstick video!');
-});
+player.setCurrentTime(currentTime);
+player.on('timeupdate', throttle(onPlay, throttleTime));
 
-// player.on('play', function () {
-//   console.log('played the video!');
-// });
-// //
+function onPlay(time) {
+  localStorage.setItem(currentTimeKey, time.seconds);
+}
 
-// player.getVideoTitle().then(function (title) {
-//   console.log('title:', title);
-// });
+console.log(
+  `${currentTimeKey}: ${parseInt(currentTime / 60)}m ${parseInt(
+    currentTime % 60
+  )}s`
+);
