@@ -12,9 +12,3 @@ player.on('timeupdate', throttle(onPlay, throttleTime));
 function onPlay(time) {
   localStorage.setItem(currentTimeKey, time.seconds);
 }
-
-console.log(
-  `${currentTimeKey}: ${parseInt(currentTime / 60)}m ${parseInt(
-    currentTime % 60
-  )}s`
-);
