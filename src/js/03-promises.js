@@ -13,13 +13,15 @@ form.addEventListener('submit', event => {
   const amount = getValue('amount');
 
   for (let position = 1; position <= amount; position++) {
+    const message = text => `${text} promise ${position} in ${delay}ms`;
+
     createPromise(position, delay, step)
       .then(({ position, delay }) => {
-        Notify.success(`Fulfilled promise ${position} in ${delay}ms`);
+        Notify.success(message('Fulfilled'));
       })
 
       .catch(({ position, delay }) => {
-        Notify.failure(`Rejected promise ${position} in ${delay}ms`);
+        Notify.failure(message('Rejected'));
       });
   }
 });

@@ -10,16 +10,19 @@ let intervalId;
 startButton.addEventListener('click', startBackgroundChange);
 stopButton.addEventListener('click', stopBackgroundChange);
 
+const reverseBoolButtons = () => {
+  stopButton.disabled = startButton.disabled;
+  startButton.disabled = !startButton.disabled;
+};
+
 function startBackgroundChange() {
   intervalId = setInterval(() => {
     body.style.backgroundColor = getRandomHexColor();
   }, 1000);
-  startButton.disabled = true;
-  stopButton.disabled = false;
+  reverseBoolButtons();
 }
 
 function stopBackgroundChange() {
   clearInterval(intervalId);
-  startButton.disabled = false;
-  stopButton.disabled = true;
+  reverseBoolButtons();
 }
